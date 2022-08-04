@@ -1,0 +1,37 @@
+{% extends "navbar.html" %}
+{% block title %} Manage-Profile {% endblock %}
+{% block content %} 
+<div class="col-sm-1"></div>
+<div class="card border-primary mb-2 col-sm-10" style="margin-left: 10%">
+  <div class="card-header bg-primary text-white ml-auto"><b><h5>Profile Details</h5></b></div>
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="card-body text-dark col-sm-10">
+      <form action = "/manageprofile" method = "POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="exampleFormControlInput1" class="mb-0"><b><h6>College</h6></b></label>
+          <input type="text" class="form-control mb-2 border-primary" name="college" placeholder="College Name" value = "{{profile[1]}}">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1" class="mb-0"><b><h6>Department</h6></b></label>
+          <input type="text" class="form-control mb-2 border-primary" name="dept" placeholder="Department Name" value = "{{profile[2]}}">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1" class="mb-0"><b><h6>Education Details</h6></b></label>
+          <textarea class="form-control mb-2 border-primary" name="education" rows="3" placeholder="Educational Details" value = "{{profile[3]}}"></textarea>
+        </div>
+          <div class="form-group">
+            <label class="form-label" for="resume"><b><h6>Upload Resume</h6></b></label>
+            <input type="file" class="form-control mb-2 border-primary" id="customFile" name="resume" value="{{profile[4]}}">
+          </div>
+          <div class="form-group">
+            <input type="submit" value = "Submit" class="btn btn-primary btn-sm float-right">
+          </div>
+        </form>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+</div>
+<div class="col-sm-1"></div>
+
+{% endblock %}

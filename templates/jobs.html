@@ -1,0 +1,64 @@
+{% extends "navbar.html" %}
+{% block title %} Job Search : hire!t{% endblock %}
+{% block content %}
+    <div class="container mb-0">
+        <div class="card border-white">
+            <div class="card-header bg-primary text-white">
+            Search for Jobs
+            </div>
+            <div class="row">
+                <form class="form-inline my-2 my-lg-0" method="POST" action="/jobs">
+                    <input class="form-control" style="display: inline; width: 40%; margin: 10px;" name="keywords" type="search" placeholder="Keywords">
+                    <input class="form-control" style="display: inline; width: 40%; margin: 10px;" name="location" type="search" placeholder="Location">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid row">
+        <div class="col-sm-5">
+            <img src="../static/search.png" style="position: fixed; width: 37%; margin-top: -4%;">
+        </div>
+        <div class="col-sm-7">
+            {% for job in jobs %}
+                <div class="card" style="margin-bottom: 50px;">
+                    <div class="card-header text-white bg-primary">
+                        {{job[0]}} - {{job[1]}}
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Category</th>
+                                    <td>{{job[1]}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Company</th>
+                                    <td>{{job[2]}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Location</th>
+                                    <td>{{job[3]}}</td>
+                                </tr> 
+                                <tr>
+                                    <th scope="row">Salary</th>
+                                    <td>${{job[4]}}/{% if job[1] == "Intern" %} <span>month</span> {% else %} <span>year</span> {% endif %}</td>
+                                </tr> 
+                                <tr>
+                                    <th scope="row">Description</th>
+                                    <td>{{job[5]}}</td>
+                                </tr> 
+                                </tbody>
+                            </table>
+                            <form method="POST" action="/apply">
+                                <input type="hidden" name="job_id" value="{{job[6]}}">
+                                <input class="btn btn-warning" type="submit" value = "Apply">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

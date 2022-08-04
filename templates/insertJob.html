@@ -1,0 +1,27 @@
+{% extends "navbar.html" %}
+{% block title %} Insert Job : hire!t {% endblock %}
+{% block content %}
+    <div class="row container">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-6">
+            <div class="card border-primary mb-1" style="background-color: #FFF;">
+                <div class="card-header bg-primary text-white text-center"><h5>Insert Job</h5></div>
+            </div>
+            <div class="row mt-0">
+                <div clas="col-sm-2"></div>
+                <div class="card-body text-dark col-sm-8">
+                    <form action="/addJob" method="POST" accept-charset="utf-8">
+                        <input type="text" name="company_name" placeholder="Company Name" class="form-control mb-2 border-primary" >
+                        <input type="text" name="job_title" placeholder="Job Title" class="form-control mb-2 border-primary" >
+                        <input type="text" name="job_type" placeholder="Job Type" class="form-control mb-2 border-primary" >
+                        <input type="text" name="job_description" placeholder="Job Description" class="form-control mb-2 border-primary" >
+                        <input type="text" name="salary" placeholder="Salary" class="form-control mb-2 border-primary">
+                        <input type="submit" class="btn btn-primary col-12 text-center" value="Submit" >
+                    </form>
+                </div>
+                <div clas="col-sm-2"></div>
+        </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "navbar.html" %}
+{% block title %} Results : hire!t {% endblock %}
+{% block content %}
+    {% if res %}
+        {% for result in res %}
+            {% if result[4] == 0 %}
+                <div class="row container">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="card border-primary mb-3">
+                            <div class="card-header bg-primary text-white"> Result for {{result[1]}} at {{result[2]}}, {{result[3]}} </div>
+                            <div class="card-body row">
+                                <div class="col-sm-4">
+                                    <img src="https://cdn0.iconfinder.com/data/icons/robot-avatars-ultra-color/60/048_-_Sad_Bot-256.png" class="card-img" style="width: 80%;"  alt="profile photo">
+                                </div>
+                                <div class="col-sm-8">
+                                    <h5 class="card-title">Better Luck Next Time :(</h5>
+                                    <p class="card-text">You're not selected for the position of Result for {{result[1]}} at {{result[2]}}, {{result[3]}} </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            {% else %}
+                <div class="row container">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="card border-primary mb-3">
+                            <div class="card-header bg-primary text-white"> Result for {{result[1]}} at {{result[2]}}, {{result[3]}} </div>
+                            <div class="card-body row">
+                                <div class="col-sm-4">
+                                    <img src="https://cdn3.iconfinder.com/data/icons/success-flat/64/Gold-medal-star-festivalouse-home-design-256.png" class="card-img" style="width: 80%;"  alt="profile photo">
+                                </div>
+                                <div class="col-sm-8">
+                                    <h5 class="card-title">Congratulations !!</h5>
+                                    <p class="card-text">You're selected for the position of Result for {{result[1]}} at {{result[2]}}, {{result[3]}} </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p style="margin-left: 20px; font-size: 20px;">No Results found</p>
+    {% endif %}
+{% endblock %}

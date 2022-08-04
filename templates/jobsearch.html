@@ -1,0 +1,63 @@
+{% extends "navbar.html" %}
+{% block title %} Job Search : hire!t{% endblock %}
+{% block content %}
+    <div class="container-fluid mb-2">
+        <div class="card border-white">
+            <div class="card-header bg-primary text-white">
+            Searched Results
+            </div>
+        </div>
+    </div>
+    <!-- job.job_title, job.job_type, company.name, company.location, job.job_salary, job.job_description, job.job_id -->
+    <div class="container-fluid row">
+        <div class="col-sm-7">
+            {% if searchResult %}
+            {% for job in searchResult %}
+                <div class="card" style="margin-bottom: 50px;">
+                    <div class="card-header text-white bg-primary">
+                        {{job[0]}} - {{job[1]}}
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Category</th>
+                                    <td>{{job[1]}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Company</th>
+                                    <td>{{job[2]}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Location</th>
+                                    <td>{{job[3]}}</td>
+                                </tr> 
+                                <tr>
+                                    <th scope="row">Salary</th>
+                                    <td>${{job[4]}}/{% if job[1] == "Intern" %} <span>month</span> {% else %} <span>year</span> {% endif %}</td>
+                                </tr> 
+                                <tr>
+                                    <th scope="row">Description</th>
+                                    <td>{{job[5]}}</td>
+                                </tr> 
+                                </tbody>
+                            </table>
+                            <form method="POST" action="/apply">
+                                <input type="hidden" name="job_id" value="{{job[6]}}">
+                                <input class="btn btn-warning" type="submit" value = "Apply">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+            <p style="margin-left: 20px; font-size: 20px;">No search results found</p>
+            {% endif %}
+        </div>
+        <div class="col-sm-5">
+            <img src="../static/results.jpg" style="position: fixed; width: 30%; margin-top: 0%; margin-left: 5%;">
+        </div>
+    </div>
+    
+{% endblock %}
