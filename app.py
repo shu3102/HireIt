@@ -8,9 +8,6 @@ Bootstrap(app)
 
 app.secret_key = "apT7BsaQ"
 
-# https://www.phpmyadmin.co/db_structure.php?db=sql6490620
-# Configuring Database
-# app.config['MYSQL_HOST'] = 'sql6.freemysqlhosting.net'
 app.config['MYSQL_PORT'] = 3306
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
