@@ -9,9 +9,11 @@ Bootstrap(app)
 app.secret_key = "apT7BsaQ"
 
 app.config['MYSQL_PORT'] = 3306
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'jobportal'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = ''
+# app.config['MYSQL_DB'] = 'jobportal'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://imjyvckdgmcrlj:19a9ff3127c03d25e488d00b4a714d3d419150db4b36d6eea0615cf7c7b56eb5@ec2-52-207-90-231.compute-1.amazonaws.com:5432/df1smiopbuelob'
+
 mysql = MySQL(app)
 
 
@@ -354,7 +356,7 @@ def editAccount():
             return redirect("/account")
     return redirect("/")
 
-
+# admin part
 @app.route("/addCompany", methods=["GET", "POST"])
 def addCompany():
     if "user" in session and session["email"] == "admin@hireit.com":
