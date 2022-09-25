@@ -79,7 +79,6 @@ ipywidgets==6.0.0
 isort==5.9.3
 itsdangerous==2.0.1
 jedi==0.15.2
-Jinja2==3.0.1
 joblib==1.1.0
 jsonschema==3.2.0
 jupyter-client==6.1.2
