@@ -1,0 +1,48 @@
+{% extends "navbarAdmin.html" %} {% block title %} Students : hire!t{% endblock %} {%
+block content %}
+<div class="row container-fluid">
+ 
+    <div class="card border-primary mt-3" style="margin-bottom: 100px">
+      <div class="card-header text-white bg-primary">Students List</div>
+      <div class="card-body">
+        {% if students %}
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">JobSeeker Id</th>
+              <th scope="col">Frist Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for student in students %}
+            <tr>
+              <th scope="row">{{loop.index}}</th>
+              <td>{{ student[0] }}</td>
+              <td>{{ student[1] }}</td>
+              <td>{{ student[2] }}</td>
+              <td>{{ student[3] }}</td>
+              <td>{{ student[4] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p style="margin-left: 15px; font-size: 17px">
+          No Students 
+        </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <img
+      src="../static/details.png"
+      style="position: fixed; width: 30%; margin-top: 2%"
+    />
+  </div>
+</div>
+{% endblock %}

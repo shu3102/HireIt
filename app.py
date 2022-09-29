@@ -9,10 +9,10 @@ Bootstrap(app)
 app.secret_key = "apT7BsaQ"
 
 app.config['MYSQL_PORT'] = 3306
-# app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = ''
-# app.config['MYSQL_DB'] = 'jobportal'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://imjyvckdgmcrlj:19a9ff3127c03d25e488d00b4a714d3d419150db4b36d6eea0615cf7c7b56eb5@ec2-52-207-90-231.compute-1.amazonaws.com:5432/df1smiopbuelob'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'jobportal'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://imjyvckdgmcrlj:19a9ff3127c03d25e488d00b4a714d3d419150db4b36d6eea0615cf7c7b56eb5@ec2-52-207-90-231.compute-1.amazonaws.com:5432/df1smiopbuelob'
 
 mysql = MySQL(app)
 
@@ -20,6 +20,8 @@ mysql = MySQL(app)
 @app.route("/")
 def homepage():
     if "user" in session:
+        if(session["email"] == "admin@hireit.com"):
+            return render_template("homeAdmin.html")
         return render_template("home.html")
     return redirect("/signin")
 
@@ -496,6 +498,32 @@ def declareResult():
         return render_template("declareResult.html")
     flash("Sign In as Admin", "warning")
     return redirect("/signin")
+
+
+@app.route("/getStudents")
+def getStudentProfile():
+    if "user" in session:
+        if(session["email"] == "admin@hireit.com"):
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT * FROM jobseeker")
+            students_List = cur.fetchall()
+            cur.close()
+            return render_template('showStudent.html', students=students_List)
+    else:
+        return redirect(url_for('signin'))
+
+@app.route("/getCompany")
+def getCompanyProfile():
+    if "user" in session:
+        if(session["email"] == "admin@hireit.com"):
+            cur = mysql.connection.cursor()
+            cur.execute("select company.name, job.job_title, company.location from company inner join job where company.company_id = job.company_id")
+            company_List = cur.fetchall()
+            cur.close()
+            return render_template('showCompany.html', companies=company_List)
+    else:
+        return redirect(url_for('signin'))
+
 
 
 if (__name__ == "__main__"):
